@@ -45,6 +45,8 @@ Years_of_Experience__c < 0
 ```
 
 Error message: *Years of experience cannot be negative* (shown on the Years of Experience field).
+
+![Validation rule](screenshots/validation-rule.jpg)
 A validation rule formula returns TRUE when the data is **bad**, which is what blocks the save.
 
 ## Flow: Senior Candidate Review Task
@@ -54,7 +56,12 @@ A validation rule formula returns TRUE when the data is **bad**, which is what b
 - Entry condition: `Years of Experience >= 5`
 - Action: Create Records, a Task with Subject "Review senior candidate", Status Not Started, owner = `{!$Record.OwnerId}`
 
-Tested by creating a candidate with 6 years of experience: the Task was created and assigned to the candidate's owner.
+The Task is also linked to the Candidate (Related To = `{!$Record.Id}`), so it shows in the Candidate's activity timeline.
+
+Tested by creating a candidate with 6 years of experience: the Task was created, assigned to the candidate's owner, and appeared on the Candidate record.
+
+![Flow canvas](screenshots/flow-canvas.jpg)
+![Task created on the candidate](screenshots/flow-task-created.jpg)
 
 ## Report
 
@@ -81,9 +88,8 @@ SELECT Name, Account.Name FROM Opportunity WHERE StageName = 'Closed Won'
 
 ## Screenshots
 
-Put screenshots in `screenshots/` (data model, validation rule, flow canvas, report, permission set).
+Screenshots are in the `screenshots/` folder.
 
 ## Possible next steps
-- Link the flow's Task to the Candidate (Related To = `{!$Record.Id}`)
 - Dashboard built from the Candidates by Country report
 - Approval process on Position
