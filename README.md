@@ -67,6 +67,12 @@ Tested by creating a candidate with 6 years of experience: the Task was created,
 
 "Candidates by Country": report type Candidates, Summary format, rows grouped by Country, with subtotals and grand total.
 
+![Report](screenshots/report.jpg)
+
+The report feeds a **Recruiting Dashboard** with a bar chart of candidates per country.
+
+![Dashboard](screenshots/dashboard.jpg)
+
 Equivalent SOQL for a quick check:
 
 ```sql
@@ -78,6 +84,8 @@ SELECT Country__c, COUNT(Id) FROM Candidate__c GROUP BY Country__c
 Permission set `Hiring Manager Delete` grants Candidate Read, Edit and Delete (Create is off). It is assigned to the few users who need to delete candidates, instead of editing a profile that dozens of users share. Changing the profile would give every user on that profile delete access, which breaks least privilege.
 
 Note: Delete requires Read and Edit in the same permission set.
+
+![Permission set](screenshots/permission-set.jpg)
 
 ## SOQL examples used while learning
 
@@ -91,5 +99,4 @@ SELECT Name, Account.Name FROM Opportunity WHERE StageName = 'Closed Won'
 Screenshots are in the `screenshots/` folder.
 
 ## Possible next steps
-- Dashboard built from the Candidates by Country report
 - Approval process on Position
